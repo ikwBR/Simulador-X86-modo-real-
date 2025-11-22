@@ -1,5 +1,5 @@
 
-const API_URL = 'http://127.0.0.1:5000/execute';
+const API_URL = 'https://simulador-x86-modo-real.onrender.com';
 
 // --- VARIÁVEIS DE CONTROLE DE EXECUÇÃO ---
 let autoRunInterval = null;
@@ -308,4 +308,5 @@ async function simulateExecution(action) {
 // Inicializa UI ao carregar
 document.addEventListener('DOMContentLoaded', () => {
     updateUI();
+
 });
