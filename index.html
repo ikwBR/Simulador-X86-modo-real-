@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador x86 Modo Real</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+        
+        <div id="fluxo-barramento" class="section">
+            <h2>Fluxo de Barramento</h2>
+            <div id="fluxo-output">Aguardando código...</div>
+        </div>
+        
+        <div id="registradores-gerais" class="section">
+            <h2>Registradores Gerais</h2>
+            <table>
+                <tbody id="reg-gerais-body">
+                    <tr><th>AX</th><td id="reg-ax"></td></tr>
+                    <tr><th>BX</th><td id="reg-bx"></td></tr>
+                    <tr><th>CX</th><td id="reg-cx"></td></tr>
+                    <tr><th>DX</th><td id="reg-dx"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="registradores-segmentos" class="section">
+            <h2>Registradores Seletores de Segmentos</h2>
+            <table>
+                <tbody id="reg-segmentos-body">
+                    <tr><th>CS</th><td id="reg-cs"></td></tr>
+                    <tr><th>SS</th><td id="reg-ss"></td></tr>
+                    <tr><th>DS</th><td id="reg-ds"></td></tr>
+                    <tr><th>ES</th><td id="reg-es"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="registrador-flag" class="section">
+            <h2>Registrador Flag</h2>
+            <div id="reg-flag-value"></div>
+        </div>
+
+        <div id="codigo-editor" class="section">
+            <h2>Simulador Assembly x86 (Modo Real)</h2>
+            <textarea id="assembly-code" placeholder="Insira seu código Assembly aqui...">
+; Exemplo Completo:
+MOV AX, 1234H
+ADD BX, AX
+MOV [SI], AX
+JMP 0000
+            </textarea>
+            
+            <div class="button-group">
+                <button onclick="simulateExecution('init')">Carregar Código</button>
+                <button onclick="simulateExecution('step')">Executar Próximo Passo</button>
+                <button onclick="simulateExecution('reset')">Resetar</button>
+                <button id="btn-autorun" onclick="toggleAutoRun()">Executar Tudo</button>
+            </div>
+
+            <div id="status-message">Aguardando...</div>
+
+            <h3>Cálculo do Endereçamento:</h3>
+            <div id="address-calculation-output"></div>
+        </div>
+
+        <div id="registradores-deslocamento" class="section">
+            <h2>Registradores de Deslocamento (OFFSET)</h2>
+            <table>
+                <tbody id="reg-offset-body">
+                    <tr><th>IP</th><td id="reg-ip"></td></tr>
+                    <tr><th>SP</th><td id="reg-sp"></td></tr>
+                    <tr><th>BP</th><td id="reg-bp"></td></tr>
+                    <tr><th>DI</th><td id="reg-di"></td></tr>
+                    <tr><th>SI</th><td id="reg-si"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="memoria-principal" class="section">
+            <h2>Memória Principal</h2>
+            <div id="memory-view">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

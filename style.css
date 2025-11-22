@@ -1,0 +1,187 @@
+/* style.css */
+
+/* Cores base inspiradas no tema escuro do GitHub/Canva */
+:root {
+    --bg-main: #0d1117;
+    --bg-section: #161b22;
+    --border-color: #30363d;
+    --text-primary: #c9d1d9;
+    --text-highlight: #58a6ff;
+    --text-success: #68ff68;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 20px;
+}
+
+/* Layout de Grade */
+.grid-container {
+    display: grid;
+    /* Define 3 colunas principais, onde a coluna do meio (editor) é maior */
+    grid-template-columns: 1fr 2fr 1fr; 
+    grid-template-areas: 
+        "fluxo editor memoria"
+        "r-gerais editor memoria"
+        "r-segmentos r-deslocamento memoria"
+        "r-flag r-deslocamento memoria";
+    gap: 20px;
+    max-width: 1400px;
+    margin: 20px auto;
+}
+
+/* Mapeamento de Áreas para o Grid */
+#fluxo-barramento { grid-area: fluxo; }
+#codigo-editor { grid-area: editor; }
+#memoria-principal { grid-area: memoria; }
+#registradores-gerais { grid-area: r-gerais; }
+#registradores-segmentos { grid-area: r-segmentos; }
+#registradores-deslocamento { grid-area: r-deslocamento; }
+#registrador-flag { grid-area: r-flag; }
+
+/* Estilo das Seções */
+.section {
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 150px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    color: var(--text-highlight);
+}
+
+/* Estilo das Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.3em;
+}
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+    font-family: monospace; /* Fonte monoespaçada para valores hexadecimais */
+}
+th {
+    background-color: #21262d;
+    color: var(--text-primary);
+    width: 30%;
+}
+td {
+    color: #ff9900; /* Destaque para os valores dos registradores */
+}
+
+/* Estilo do Editor de Código e Output */
+textarea {
+    width: 98%;
+    height: 250px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: var(--text-highlight);
+    font-family: monospace;
+    padding: 10px;
+    resize: vertical;
+}
+#fluxo-output {
+    height: 350px; /* Mais alto para caber o log */
+    overflow-y: scroll;
+    background-color: var(--bg-main);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    white-space: pre-wrap; /* Preserva a formatação de linha, mas permite quebra */
+    font-family: monospace;
+    font-size: 0.95em;
+    color: var(--text-success); /* Destaque para o log do barramento */
+}
+
+#address-calculation-output {
+    background-color: #0d1117;
+    padding: 5px;
+    border: 1px dashed var(--border-color);
+    color: var(--text-success);
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+/* Memória */
+#memory-view {
+    height: 500px;
+    overflow-y: scroll;
+    font-family: monospace;
+    font-size: 1.0em;
+    background-color: var(--bg-main);
+    padding: 5px;
+}
+
+#status-message {
+    margin-top: 20px; /* Espaçamento para baixo dos botões */
+    margin-bottom: 10px; /* Espaço antes do próximo elemento */
+    color: var(--text-warning);
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+/* Definição da animação de piscar */
+@keyframes blinkEffect {
+    0% { background-color: transparent; color: #ff9900; }
+    50% { background-color: #2ea043; color: #ffffff; } /* Verde GitHub com texto branco */
+    100% { background-color: transparent; color: #ff9900; }
+}
+
+/* Classe que será adicionada via JS */
+.blink {
+    animation: blinkEffect 0.5s ease-in-out 2; /* 0.5s de duração, repete 2 vezes */
+}
+
+/* ... (mantenha o código anterior) ... */
+
+/* Estilos específicos para a nova Tabela de Memória */
+.memory-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: monospace;
+    font-size: 1.2em; /* Fonte um pouco menor para caber tudo */
+}
+
+.memory-table th {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 8px;
+    text-align: left;
+}
+
+.memory-table td {
+    border: 1px solid #30363d;
+    padding: 6px 8px;
+    color: #c9d1d9;
+}
+
+/* Coluna de Valor */
+.mem-val {
+    background-color: #1f2428;
+    color: #79c0ff; /* Azul claro para destacar o byte */
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Coluna de Descrição */
+.mem-desc {
+    color: #a5d6ff; /* Cor mais suave para o texto descritivo */
+    font-style: italic;
+}
+
+/* Remove padding excessivo do container da memória para a tabela caber bem */
+#memory-view {
+    padding: 0; 
+}
