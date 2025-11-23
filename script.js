@@ -1,5 +1,5 @@
 
-const API_URL = 'https://simulador-x86-modo-real.onrender.com';
+const API_URL = 'https://simulador-x86-modo-real.onrender.com/execute';
 
 // --- VARIÁVEIS DE CONTROLE DE EXECUÇÃO ---
 let autoRunInterval = null;
@@ -310,3 +310,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateUI();
 
 });
+
